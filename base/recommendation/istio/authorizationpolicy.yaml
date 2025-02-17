@@ -1,0 +1,14 @@
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: recommendationservice
+  namespace: recommendationservice
+spec:
+  selector:
+    matchLabels:
+      app: recommendationservice
+  action: ALLOW
+  rules:
+    - from:
+        - source:
+            principals: ["cluster.local/ns/frontend/sa/frontend"]

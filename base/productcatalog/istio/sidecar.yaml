@@ -1,0 +1,12 @@
+apiVersion: networking.istio.io/v1
+kind: Sidecar
+metadata:
+  name: productcatalogservice
+  namespace: productcatalogservice
+spec:
+  workloadSelector:
+    labels:
+      app: productcatalogservice
+  egress:
+    - hosts:
+        - "istio-system/*"

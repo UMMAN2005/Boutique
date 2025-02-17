@@ -1,0 +1,12 @@
+apiVersion: networking.istio.io/v1
+kind: Sidecar
+metadata:
+  name: currencyservice
+  namespace: currencyservice
+spec:
+  workloadSelector:
+    labels:
+      app: currencyservice
+  egress:
+    - hosts:
+        - "istio-system/*"

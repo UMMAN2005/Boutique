@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: frontend-ingress
+  namespace: frontend
+spec:
+  hosts:
+    - "ayazumman.xyz"
+  gateways:
+    - frontend-gateway
+  http:
+    - route:
+        - destination:
+            host: frontend
+            port:
+              number: 80

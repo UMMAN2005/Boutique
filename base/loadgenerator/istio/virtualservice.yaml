@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: loadgenerator
+  namespace: loadgenerator
+spec:
+  hosts:
+    - loadgenerator.loadgenerator.svc.cluster.local
+  http:
+    - route:
+        - destination:
+            host: loadgenerator.loadgenerator.svc.cluster.local
+            subset: v1
+          weight: 90
+        - destination:
+            host: loadgenerator.loadgenerator.svc.cluster.local
+            subset: v2
+          weight: 10

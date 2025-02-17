@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1
+kind: Sidecar
+metadata:
+  name: frontend
+  namespace: frontend
+spec:
+  workloadSelector:
+    labels:
+      app: frontend
+  egress:
+    - hosts:
+        - "istio-system/*"
+        - "checkoutservice/*"
+        - "productcatalogservice/*"
+        - "currencyservice/*"
+        - "shippingservice/*"
+        - "cartservice/*"
+        - "adservice/*"
+        - "recommendationservice/*"

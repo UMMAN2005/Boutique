@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: shippingservice
+  namespace: shippingservice
+spec:
+  hosts:
+    - shippingservice.shippingservice.svc.cluster.local
+  http:
+    - route:
+        - destination:
+            host: shippingservice.shippingservice.svc.cluster.local
+            subset: v1
+          weight: 90
+        - destination:
+            host: shippingservice.shippingservice.svc.cluster.local
+            subset: v2
+          weight: 10

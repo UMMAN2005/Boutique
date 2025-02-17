@@ -1,0 +1,12 @@
+apiVersion: networking.istio.io/v1
+kind: Sidecar
+metadata:
+  name: emailservice
+  namespace: emailservice
+spec:
+  workloadSelector:
+    labels:
+      app: emailservice
+  egress:
+    - hosts:
+        - "istio-system/*"

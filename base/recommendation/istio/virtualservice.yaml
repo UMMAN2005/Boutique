@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: recommendationservice
+  namespace: recommendationservice
+spec:
+  hosts:
+    - recommendationservice.recommendationservice.svc.cluster.local
+  http:
+    - route:
+        - destination:
+            host: recommendationservice.recommendationservice.svc.cluster.local
+            subset: v1
+          weight: 90
+        - destination:
+            host: recommendationservice.recommendationservice.svc.cluster.local
+            subset: v2
+          weight: 10

@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: redis-cart
+  namespace: cartservice
+spec:
+  hosts:
+    - redis-cart.cartservice.svc.cluster.local
+  http:
+    - route:
+        - destination:
+            host: redis-cart.cartservice.svc.cluster.local
+            subset: v1
+          weight: 90
+        - destination:
+            host: redis-cart.cartservice.svc.cluster.local
+            subset: v2
+          weight: 10

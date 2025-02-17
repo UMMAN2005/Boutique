@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: cartservice
+  namespace: cartservice
+spec:
+  hosts:
+    - cartservice.cartservice.svc.cluster.local
+  http:
+    - route:
+        - destination:
+            host: cartservice.cartservice.svc.cluster.local
+            subset: v1
+          weight: 90
+        - destination:
+            host: cartservice.cartservice.svc.cluster.local
+            subset: v2
+          weight: 10

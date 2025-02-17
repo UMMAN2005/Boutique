@@ -1,0 +1,19 @@
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: productcatalogservice
+  namespace: productcatalogservice
+spec:
+  selector:
+    matchLabels:
+      app: productcatalogservice
+  action: ALLOW
+  rules:
+    - from:
+        - source:
+            principals:
+              [
+                "cluster.local/ns/checkoutservice/sa/checkoutservice",
+                "cluster.local/ns/frontend/sa/frontend",
+                "cluster.local/ns/recommendationservice/sa/recommendationservice",
+              ]

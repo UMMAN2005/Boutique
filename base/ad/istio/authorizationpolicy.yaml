@@ -1,0 +1,14 @@
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: adservice
+  namespace: adservice
+spec:
+  selector:
+    matchLabels:
+      app: adservice
+  action: ALLOW
+  rules:
+    - from:
+        - source:
+            principals: ["cluster.local/ns/frontend/sa/frontend"]
