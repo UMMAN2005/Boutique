@@ -7,3 +7,4 @@ resources:
   - scale
   - observability
   - security
+  - argo
