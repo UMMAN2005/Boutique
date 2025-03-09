@@ -1,0 +1,10 @@
+# Test
+test:
+  stage: code-quality
+  script:
+    - dotnet test $TEST_PROJECT --configuration $BUILD_CONFIGURATION --logger:trx
+  artifacts:
+    paths:
+      - TestResults/
+    expire_in: 1 week
+  allow_failure: true

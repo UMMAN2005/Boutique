@@ -1,0 +1,12 @@
+apiVersion: networking.istio.io/v1
+kind: Sidecar
+metadata:
+  name: redis-cart
+  namespace: cartservice
+spec:
+  workloadSelector:
+    labels:
+      app: redis-cart
+  egress:
+    - hosts:
+        - "istio-system/*"

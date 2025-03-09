@@ -1,0 +1,23 @@
+# Notify the deployment status
+notify:
+  stage: notify
+  needs:
+    - prod-merge-and-sync
+  image: curlimages/curl:latest
+  before_script:
+    - echo "$CI_JOB_STATUS"
+  script:
+    - |
+      if [[ "$CI_JOB_STATUS" == "failed" ]]; then
+        curl -X POST -H 'Content-type: application/json' \
+          --data "{\"text\":\"❌ $CI_PROJECT_NAME: Stage $CI_JOB_NAME failed.\"}" \
+          "$SLACK_WEBHOOK_URL"
+      else
+        curl -X POST -H 'Content-type: application/json' \
+          --data "{\"text\":\"✅ $CI_PROJECT_NAME: Stage $CI_JOB_NAME succeeded with tag $IMAGE_TAG.\"}" \
+          "$SLACK_WEBHOOK_URL"
+      fi
+  only:
+    - main
+    - merge_requests
+    - release/*

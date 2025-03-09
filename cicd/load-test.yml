@@ -1,0 +1,32 @@
+# Load testing with k6
+.k6:
+  stage: load-test
+  image: grafana/k6:latest
+  before_script:
+    - sed -i "s|const BASE_URL = \".*\";|const BASE_URL = \"$DEV_URL\";|" scripts/load_test.js
+  script:
+    - k6 run --vus 20 --duration 30s --summary-export=k6-summary.json --out json=k6-results.json scripts/load_test.js
+  artifacts:
+    paths:
+      - k6-summary.json
+      - k6-results.json
+    reports:
+      load_performance: k6-results.json
+    expire_in: 1 week
+  allow_failure: true
+
+# Load testing with locust
+.locust:
+  stage: load-test
+  image: locustio/locust:latest
+  script:
+    - locust --headless -u 20 -r 10 -t 30s --host=$DEV_URL --csv=locust-results
+  artifacts:
+    paths:
+      - locust-results_stats.csv
+      - locust-results_failures.csv
+      - locust-results_requests.csv
+    reports:
+      load_performance: locust-results_stats.csv
+    expire_in: 1 week
+  allow_failure: true

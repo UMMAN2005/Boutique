@@ -1,0 +1,14 @@
+# Build
+build:
+  stage: build
+  image: python:$PYTHON_VERSION
+  before_script:
+    - python -m venv venv
+    - source venv/bin/activate
+    - pip install build
+  script:
+    - python -m build
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 1 week

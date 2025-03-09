@@ -1,0 +1,57 @@
+# Deploy to development
+dev-deploy:
+  stage: dev-deploy
+  when: on_success
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache git curl openssh
+    - eval $(ssh-agent -s)
+    - echo "$PRIVATE_KEY_BASE64" | base64 -d | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - ssh-keyscan "$SSH_HOST" >> ~/.ssh/known_hosts
+
+  script:
+    - git clone -b $KUBERNETES_MANIFEST_BRANCH $KUBERNETES_MANIFEST_REPO kubernetes-manifests
+    - cd kubernetes-manifests
+
+    - export TEMP_BRANCH="deploy-$(date +'%Y%m%d%H%M%S')"
+    - git checkout -b $TEMP_BRANCH
+
+    - sed -i "s|^\(\s*tag:\s*\).*|\1\"$IMAGE_TAG-dev\"|" ./$HELM_CHART/values.yaml
+
+    - git config --global user.email "$EMAIL"
+    - git config --global user.name "$USERNAME"
+    - git add .
+    - git commit -m "Update image to $DOCKER_IMAGE:$IMAGE_TAG-dev"
+    - git push origin $TEMP_BRANCH
+
+    - |
+      curl --request POST \
+        --header "PRIVATE-TOKEN: $GITLAB_API_TOKEN" \
+        --header "Content-Type: application/json" \
+        --data '{
+          "source_branch": "'"$TEMP_BRANCH"'",
+          "target_branch": "'"$KUBERNETES_MANIFEST_BRANCH"'",
+          "title": "Update Docker image to '"$DOCKER_IMAGE:$IMAGE_TAG-dev"'",
+          "description": "This MR updates the Docker image to the new tag '"$IMAGE_TAG-dev"'.",
+          "remove_source_branch": true
+        }' \
+        "https://gitlab.ayazumman.xyz/api/v4/projects/7/merge_requests"
+  after_script:
+    - git push origin --delete $TEMP_BRANCH || true
+  only:
+    - main
+    - merge_requests
+    - release/*
+
+# Development merge and sync stage
+dev-merge-and-sync:
+  stage: dev-merge-and-sync
+  when: manual
+  image: alpine:latest
+  script:
+    - echo "This job is a manual job to remember to merge and sync the changes to development."
+  only:
+    - main
+    - merge_requests
+    - release/*

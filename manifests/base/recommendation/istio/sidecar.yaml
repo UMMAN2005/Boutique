@@ -1,0 +1,13 @@
+apiVersion: networking.istio.io/v1
+kind: Sidecar
+metadata:
+  name: recommendationservice
+  namespace: recommendationservice
+spec:
+  workloadSelector:
+    labels:
+      app: recommendationservice
+  egress:
+    - hosts:
+        - "istio-system/*"
+        - "productcatalogservice/*"

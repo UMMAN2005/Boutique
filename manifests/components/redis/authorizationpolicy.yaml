@@ -1,0 +1,14 @@
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: redis-cart
+  namespace: cartservice
+spec:
+  selector:
+    matchLabels:
+      app: redis-cart
+  action: ALLOW
+  rules:
+    - from:
+        - source:
+            principals: ["cluster.local/ns/cartservice/sa/cartservice"]

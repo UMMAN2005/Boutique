@@ -1,0 +1,13 @@
+apiVersion: networking.istio.io/v1
+kind: Sidecar
+metadata:
+  name: cartservice
+  namespace: cartservice
+spec:
+  workloadSelector:
+    labels:
+      app: cartservice
+  egress:
+    - hosts:
+        - "istio-system/*"
+        - "cartservice/*"

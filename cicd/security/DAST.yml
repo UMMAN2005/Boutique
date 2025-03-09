@@ -1,0 +1,47 @@
+# DAST using zaproxy
+.zaproxy:
+  stage: dast
+  image: python:3.9
+  script:
+    - git clone https://github.com/zaproxy/zaproxy.git
+    - cd zaproxy/docker
+    - pip install -r requirements.txt
+    - timeout 1m python zap-full-scan.py -t "$DEV_URL" -m 1 -j -T 1 -a -s -l WARN -r zap-report.html
+  artifacts:
+    paths:
+      - zap-report.html
+    reports:
+      dast: zap-report.html
+    expire_in: 1 week
+  allow_failure: true
+
+# DAST using Nikto
+.nikto:
+  stage: dast
+  image: perl:5.41.6
+  script:
+    - git clone https://github.com/sullo/nikto
+    - cd nikto/program
+    - perl nikto.pl -h "$DEV_URL" -output nikto-report.html -Format html -timeout 5 -maxtime 60 -C all
+  artifacts:
+    paths:
+      - nikto-report.html
+    reports:
+      dast: nikto-report.html
+    expire_in: 1 week
+  allow_failure: true
+
+# DAST using Wapiti
+.wapiti:
+  stage: dast
+  image: python:3.10-slim
+  script:
+    - pip install wapiti3
+    - wapiti -u "$DEV_URL" --output wapiti-report.html --flush-session --level 2 --format html --verify-ssl 0
+  artifacts:
+    paths:
+      - wapiti-report.html
+    reports:
+      dast: wapiti-report.html
+    expire_in: 1 week
+  allow_failure: true

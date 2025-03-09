@@ -1,0 +1,21 @@
+# Image scan with Trivy
+.trivy:
+  stage: image-scan
+  image:
+    name: docker.io/aquasec/trivy:latest
+    entrypoint: [""]
+  variables:
+    FULL_IMAGE_NAME: "$DOCKER_IMAGE:$IMAGE_TAG"
+  before_script:
+    - trivy --version
+    - trivy clean --scan-cache
+  script:
+    - trivy image --format template --template "@/contrib/gitlab.tpl" --output "$CI_PROJECT_DIR/gl-container-scanning-report.json" "$FULL_IMAGE_NAME"
+    - trivy image --severity CRITICAL --exit-code 1 "$FULL_IMAGE_NAME"
+  artifacts:
+    paths:
+      - gl-container-scanning-report.json
+    reports:
+      container_scanning: gl-container-scanning-report.json
+    expire_in: 1 week
+  allow_failure: true

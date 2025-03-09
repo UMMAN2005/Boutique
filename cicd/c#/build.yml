@@ -1,0 +1,16 @@
+variables:
+  SOLUTION_FILE: "cartservice.sln"
+  TEST_PROJECT: "tests/cartservice.tests.csproj"
+  BUILD_CONFIGURATION: "Release"
+
+# Build
+build:
+  stage: build
+  image: mcr.microsoft.com/dotnet/sdk:9.0
+  script:
+    - dotnet restore $SOLUTION_FILE
+    - dotnet build $SOLUTION_FILE --configuration $BUILD_CONFIGURATION
+  artifacts:
+    paths:
+      - bin/
+    expire_in: 1 week

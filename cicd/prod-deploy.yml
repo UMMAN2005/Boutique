@@ -1,0 +1,124 @@
+# Confirm the deployment to production
+deploy-to-production:
+  stage: deploy-to-production
+  when: manual
+  image: alpine:latest
+  script:
+    - echo "This job is a manual job to ask for approval before deploying to production."
+  only:
+    - main
+    - merge_requests
+    - release/*
+
+# Deploy to production
+deploy:
+  stage: prod-deploy
+  when: on_success
+  needs:
+    - deploy-to-production
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache git curl openssh
+    - eval $(ssh-agent -s)
+    - echo "$PRIVATE_KEY_BASE64" | base64 -d | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - ssh-keyscan "$SSH_HOST" >> ~/.ssh/known_hosts
+
+  script:
+    - git clone -b $KUBERNETES_MANIFEST_BRANCH $KUBERNETES_MANIFEST_REPO kubernetes-manifests
+    - cd kubernetes-manifests
+
+    - export TEMP_BRANCH="deploy-$(date +'%Y%m%d%H%M%S')"
+    - git checkout -b $TEMP_BRANCH
+
+    - sed -i "s|^\(\s*tag:\s*\).*|\1\"$IMAGE_TAG\"|" ./$HELM_CHART/values.yaml
+
+    - git config --global user.email "$EMAIL"
+    - git config --global user.name "$USERNAME"
+    - git add .
+    - git commit -m "Update image to $DOCKER_IMAGE:$IMAGE_TAG"
+    - git push origin $TEMP_BRANCH
+
+    - |
+      curl --request POST \
+        --header "PRIVATE-TOKEN: $GITLAB_API_TOKEN" \
+        --header "Content-Type: application/json" \
+        --data '{
+          "source_branch": "'"$TEMP_BRANCH"'",
+          "target_branch": "'"$KUBERNETES_MANIFEST_BRANCH"'",
+          "title": "Update Docker image to '"$DOCKER_IMAGE:$IMAGE_TAG"'",
+          "description": "This MR updates the Docker image to the new tag '"$IMAGE_TAG"'.",
+          "remove_source_branch": true
+        }' \
+        "https://gitlab.ayazumman.xyz/api/v4/projects/7/merge_requests"
+  after_script:
+    - git push origin --delete $TEMP_BRANCH || true
+  only:
+    - main
+    - merge_requests
+    - release/*
+
+# Rollback to the previous version
+rollback:
+  stage: prod-deploy
+  rules:
+    - if: $CI_JOB_STATUS == 'failed' && $CI_JOB_NAME == 'deploy'
+      when: always
+  environment:
+    name: rollback
+    url: https://gitlab.ayazumman.xyz
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache git curl openssh
+    - eval $(ssh-agent -s)
+    - echo "$PRIVATE_KEY_BASE64" | base64 -d | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - ssh-keyscan "$SSH_HOST" >> ~/.ssh/known_hosts
+
+  script:
+    - git clone -b $KUBERNETES_MANIFEST_BRANCH $KUBERNETES_MANIFEST_REPO kubernetes-manifests
+    - cd kubernetes-manifests
+
+    - export TEMP_BRANCH="rollback-$(date +'%Y%m%d%H%M%S')"
+    - git checkout -b $TEMP_BRANCH
+
+    - export PREVIOUS_TAG=$(git log --grep="tag" -n 2 | tail -1 | awk '{print $NF}')
+    - sed -i "s|^\(\s*tag:\s*\).*|\1\"$PREVIOUS_TAG\"|" ./HELM_CHART/values.yaml
+
+    - git config --global user.email "$EMAIL"
+    - git config --global user.name "$USERNAME"
+    - git add .
+    - git commit -m "Rollback image to $DOCKER_IMAGE:$IMAGE_TAG"
+    - git push origin $TEMP_BRANCH
+
+    - |
+      curl --request POST \
+        --header "PRIVATE-TOKEN: $GITLAB_API_TOKEN" \
+        --header "Content-Type: application/json" \
+        --data '{
+          "source_branch": "'"$TEMP_BRANCH"'",
+          "target_branch": "'"$KUBERNETES_MANIFEST_BRANCH"'",
+          "title": "Rollback Docker image to '"$DOCKER_IMAGE:$PREVIOUS_TAG"'",
+          "description": "This MR rolls back the Docker image to the previous tag '"$PREVIOUS_TAG"'.",
+          "remove_source_branch": true
+        }' \
+        "https://gitlab.ayazumman.xyz/api/v4/projects/7/merge_requests"
+
+  after_script:
+    - git push origin --delete $TEMP_BRANCH || true
+
+    - echo "This is an automatic rollback to the previous version."
+    - echo "Do not forget to accept the merge request to accept the changes."
+    - echo "Afterwards visit $CI_ENVIRONMENT_URL to monitor the deployment status."
+
+# Production merge and sync stage
+prod-merge-and-sync:
+  stage: prod-merge-and-sync
+  when: manual
+  image: alpine:latest
+  script:
+    - echo "This job is a manual job to remember to merge and sync the changes to production."
+  only:
+    - main
+    - merge_requests
+    - release/*

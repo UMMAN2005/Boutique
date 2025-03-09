@@ -1,0 +1,47 @@
+variables:
+  NODE_VERSION: "16"
+
+# Lint
+lint:
+  stage: code-quality
+  image: node:$NODE_VERSION
+  script:
+    - npx eslint . --ext .js,.jsx,.ts,.tsx --format junit --output-file eslint-report.xml
+  artifacts:
+    paths:
+      - eslint-report.xml
+    reports:
+      junit: eslint-report.xml
+    expire_in: 1 week
+  allow_failure: true
+
+# Test
+test:
+  stage: code-quality
+  image: node:$NODE_VERSION
+  script:
+    - npm test -- --reporter mocha-junit-reporter --reporter-options mochaFile=test-results.xml
+  artifacts:
+    paths:
+      - test-results.xml
+    reports:
+      junit: test-results.xml
+    expire_in: 1 week
+  allow_failure: true
+
+# Coverage
+coverage:
+  stage: code-quality
+  image: node:$NODE_VERSION
+  script:
+    - npm test -- --coverage --coverageReporters=text-lcov | tee coverage.lcov
+    - npx coveralls-lcov coverage.lcov > coverage.json
+  artifacts:
+    paths:
+      - coverage/
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/cobertura-coverage.xml
+    expire_in: 1 week
+  allow_failure: true

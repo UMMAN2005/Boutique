@@ -1,0 +1,15 @@
+# Build
+build:
+  stage: build
+  image: golang:$GOVERSION
+  cache:
+    key: go-modules
+  script:
+    - go env -w GO111MODULE=on
+    - go mod download
+    - go mod tidy
+    - go build -o app .
+  artifacts:
+    paths:
+      - app
+    expire_in: 1 week

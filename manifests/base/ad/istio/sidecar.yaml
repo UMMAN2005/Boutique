@@ -1,0 +1,12 @@
+apiVersion: networking.istio.io/v1
+kind: Sidecar
+metadata:
+  name: adservice
+  namespace: adservice
+spec:
+  workloadSelector:
+    labels:
+      app: adservice
+  egress:
+    - hosts:
+        - "istio-system/*"

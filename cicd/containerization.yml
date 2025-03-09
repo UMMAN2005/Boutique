@@ -1,0 +1,41 @@
+# Building a Docker image and slimming it with Slim
+docker-build:
+  stage: docker-build
+  image: docker:20.10.7
+  tags:
+    - docker
+  services:
+    - docker:20.10.7-dind
+  before_script:
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
+  script:
+    - docker build -t $DOCKER_IMAGE:$IMAGE_TAG-fat .
+
+    - echo "Installing Slim..."
+    - apk add --no-cache curl
+    - curl -L -o ds.tar.gz https://github.com/slimtoolkit/slim/releases/download/1.40.11/dist_linux.tar.gz
+    - tar -xvf ds.tar.gz
+    - mv  dist_linux/slim /usr/local/bin/
+    - mv  dist_linux/slim-sensor /usr/local/bin/
+
+    - echo "Slimming the Docker image..."
+    - echo "" | slim build --target $DOCKER_IMAGE:$IMAGE_TAG-fat --tag $DOCKER_IMAGE:$IMAGE_TAG || true
+    - echo "Slimming completed."
+
+    - |
+      if docker image inspect $DOCKER_IMAGE:$IMAGE_TAG > /dev/null 2>&1; then
+        echo "$DOCKER_IMAGE:$IMAGE_TAG exists, no need to re-tag.";
+        docker rmi $DOCKER_IMAGE:$IMAGE_TAG-fat;
+      else
+        echo "$DOCKER_IMAGE:$IMAGE_TAG does not exist, re-tagging the fat image...";
+        docker tag $DOCKER_IMAGE:$IMAGE_TAG-fat $DOCKER_IMAGE:$IMAGE_TAG;
+      fi
+  after_script:
+    - docker tag $DOCKER_IMAGE:$IMAGE_TAG $DOCKER_IMAGE:$IMAGE_TAG-dev
+    - docker tag $DOCKER_IMAGE:$IMAGE_TAG $DOCKER_IMAGE:$IMAGE_TAG-prod
+    - docker push $DOCKER_IMAGE:$IMAGE_TAG-dev
+    - docker push $DOCKER_IMAGE:$IMAGE_TAG-prod
+  only:
+    - main
+    - merge_requests
+    - release/*

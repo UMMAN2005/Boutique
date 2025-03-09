@@ -1,0 +1,18 @@
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: currencyservice
+  namespace: currencyservice
+spec:
+  selector:
+    matchLabels:
+      app: currencyservice
+  action: ALLOW
+  rules:
+    - from:
+        - source:
+            principals:
+              [
+                "cluster.local/ns/frontend/sa/frontend",
+                "cluster.local/ns/checkoutservice/sa/checkoutservice",
+              ]

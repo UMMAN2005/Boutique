@@ -1,0 +1,27 @@
+# Secret detection using gitleaks
+.gitleaks:
+  stage: sd
+  image: ghcr.io/gitleaks/gitleaks:latest
+  script:
+    - gitleaks git . --report-path gitleaks-report.json
+  artifacts:
+    paths:
+      - gitleaks-report.json
+    reports:
+      secret_detection: gitleaks-report.json
+    expire_in: 1 week
+  allow_failure: true
+
+# Secret detection using trufflehog
+.trufflehog:
+  stage: sd
+  image: ghcr.io/trufflesecurity/trufflehog:latest
+  script:
+    - trufflehog --json --exclude_paths .git --max_depth 10 . > trufflehog-report.json
+  artifacts:
+    paths:
+      - trufflehog-report.json
+    reports:
+      secret_detection: trufflehog-report.json
+    expire_in: 1 week
+  allow_failure: true

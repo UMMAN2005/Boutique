@@ -1,0 +1,50 @@
+variables:
+  GOOS: linux
+  GOARCH: amd64
+  GOVERSION: "1.17"
+
+# Lint
+lint:
+  stage: code-quality
+  image: golangci/golangci-lint:latest
+  script:
+    - golangci-lint run --out-format checkstyle --output lint-report.xml
+  artifacts:
+    paths:
+      - report.xml
+    reports:
+      codequality: lint-report.xml
+    expire_in: 1 week
+  allow_failure: true
+
+# Test
+test:
+  stage: code-quality
+  image: golang:$GOVERSION
+  script:
+    - go test -v -p 4 ./...
+  artifacts:
+    paths:
+      - test-reports.xml
+    reports:
+      junit: test-reports.xml
+    expire_in: 1 week
+  allow_failure: true
+
+# Coverage
+coverage:
+  stage: code-quality
+  image: golang:$GOVERSION
+  script:
+    - go get github.com/t-yuki/gocover-cobertura
+    - go test -coverprofile="coverage.out" ./...
+    - gocover-cobertura < coverage.out > coverage.xml
+  artifacts:
+    paths:
+      - coverage.xml
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.xml
+    expire_in: 1 week
+  allow_failure: true

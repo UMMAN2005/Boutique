@@ -1,0 +1,43 @@
+variables:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+  GRADLE_USER_HOME: "$CI_PROJECT_DIR/.gradle"
+
+# Lint
+lint:
+  stage: code_quality
+  image: gradle:7.4-jdk17-alpine
+  script:
+    - gradle checkstyleMain
+  artifacts:
+    paths:
+      - build/reports/checkstyle/
+    expire_in: 1 week
+  allow_failure: true
+
+# Test
+test:
+  stage: code_quality
+  image: gradle:7.4-jdk17-alpine
+  script:
+    - gradle test
+  artifacts:
+    paths:
+      - build/test-results/test/
+    reports:
+      junit: build/test-results/test/TEST-*.xml
+    expire_in: 1 week
+  allow_failure: true
+
+# Coverage
+coverage:
+  stage: code_quality
+  image: gradle:7.4-jdk17-alpine
+  script:
+    - gradle jacocoTestReport
+  artifacts:
+    paths:
+      - build/reports/jacoco/test/
+    reports:
+      cobertura: build/reports/jacoco/test/jacocoTestReport.xml
+    expire_in: 1 week
+  allow_failure: true

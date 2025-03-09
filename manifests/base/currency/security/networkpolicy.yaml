@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: currencyservice
+  namespace: currencyservice
+spec:
+  podSelector:
+    matchLabels:
+      app: currencyservice
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              app.kubernetes.io/name: frontend
+        - namespaceSelector:
+            matchLabels:
+              app.kubernetes.io/name: checkoutservice
+      ports:
+        - port: 7000
+          protocol: TCP
+  egress:
+    - {}

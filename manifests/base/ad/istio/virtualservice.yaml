@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: adservice
+  namespace: adservice
+spec:
+  hosts:
+    - adservice.adservice.svc.cluster.local
+  http:
+    - route:
+        - destination:
+            host: adservice.adservice.svc.cluster.local
+            subset: v1
+          weight: 90
+        - destination:
+            host: adservice.adservice.svc.cluster.local
+            subset: v2
+          weight: 10
