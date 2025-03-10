@@ -3,7 +3,7 @@ variables:
   GRADLE_USER_HOME: "$CI_PROJECT_DIR/.gradle"
 
 # Lint
-lint:
+.lint:
   stage: code_quality
   image: gradle:7.4-jdk17-alpine
   script:
@@ -15,7 +15,7 @@ lint:
   allow_failure: true
 
 # Test
-test:
+.test:
   stage: code_quality
   image: gradle:7.4-jdk17-alpine
   script:
@@ -29,7 +29,7 @@ test:
   allow_failure: true
 
 # Coverage
-coverage:
+.coverage:
   stage: code_quality
   image: gradle:7.4-jdk17-alpine
   script:

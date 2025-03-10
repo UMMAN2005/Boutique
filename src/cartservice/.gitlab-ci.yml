@@ -1,0 +1,107 @@
+stages:
+  - sd
+  - code-quality
+  - build
+  - sca
+  - sast
+  - containerization
+  - cs
+  - dev-deploy
+  - dev-merge-and-sync
+  - go-for-production
+  - prod-deploy
+  - prod-merge-and-sync
+  - notify
+
+# Include the common CI/CD configuration
+include:
+  - project: "devops/ci"
+    file: "security/SD.yml"
+  - project: "devops/ci"
+    file: "csharp/code-quality.yml"
+  - project: "devops/ci"
+    file: "csharp/build.yml"
+  - project: "devops/ci"
+    file: "security/SCA.yml"
+  - project: "devops/ci"
+    file: "security/SAST.yml"
+  - project: "devops/ci"
+    file: "other/containerization.yml"
+  - project: "devops/ci"
+    file: "security/CS.yml"
+  - project: "devops/ci"
+    file: "other/development.yml"
+  - project: "devops/ci"
+    file: "other/production.yml"
+  - project: "devops/ci"
+    file: "other/notify.yml"
+
+# Variables that are used in the pipeline
+variables:
+  DOCKER_IMAGE: "$CI_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME"
+  IMAGE_TAG: "$CI_COMMIT_SHORT_SHA"
+  SNYK_IMAGE: "mcr.microsoft.com/dotnet/sdk:9.0"
+
+# Cache configuration
+cache:
+  key: "$CI_COMMIT_REF_SLUG"
+  paths:
+    - .gradle/
+
+# Jobs configuration
+gitleaks:
+  extends: .gitleaks
+
+trufflehog:
+  extends: .trufflehog
+
+lint:
+  extends: .lint
+
+test:
+  extends: .test
+
+coverage:
+  extends: .coverage
+
+build:
+  extends: .build
+
+snyk:
+  extends: .snyk
+
+owasp-dependency-check:
+  extends: .owasp-dependency-check
+
+sonarqube:
+  extends: .sonarqube
+
+semgrep:
+  extends: .semgrep
+
+docker:
+  extends: .docker
+
+trivy:
+  extends: .trivy
+
+dev-deploy:
+  extends: .dev-deploy
+
+dev-merge-and-sync:
+  extends: .dev-merge-and-sync
+
+confirm-prod-deploy:
+  extends: .confirm-prod-deploy
+
+prod-deploy:
+  extends: .prod-deploy
+
+prod-rollback:
+  extends: .prod-rollback
+
+prod-merge-and-sync:
+  extends: .prod-merge-and-sync
+
+slack:
+  extends: .slack

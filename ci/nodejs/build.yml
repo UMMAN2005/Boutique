@@ -1,5 +1,5 @@
 # Build
-build:
+.build:
   stage: build
   image: node:$NODE_VERSION
   cache:

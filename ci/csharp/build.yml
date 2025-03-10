@@ -4,7 +4,7 @@ variables:
   BUILD_CONFIGURATION: "Release"
 
 # Build
-build:
+.build:
   stage: build
   image: mcr.microsoft.com/dotnet/sdk:9.0
   script:

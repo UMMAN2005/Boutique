@@ -1,5 +1,5 @@
 # Build
-build:
+.build:
   stage: build
   image: gradle:7.4-jdk17-alpine
   script:

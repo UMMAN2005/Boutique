@@ -1,5 +1,5 @@
 # Build
-build:
+.build:
   stage: build
   image: python:$PYTHON_VERSION
   before_script:
