@@ -6,3 +6,8 @@ resources:
 
 patchesStrategicMerge:
   - patches.yaml
+
+images:
+  - name: recommendationservice
+    newName: reg.ayazumman.com/recommendationservice
+    newTag: dev-latest

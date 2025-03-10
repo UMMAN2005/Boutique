@@ -6,3 +6,8 @@ resources:
 
 patchesStrategicMerge:
   - patches.yaml
+
+images:
+  - name: cartservice
+    newName: reg.ayazumman.com/cartservice
+    newTag: dev-latest

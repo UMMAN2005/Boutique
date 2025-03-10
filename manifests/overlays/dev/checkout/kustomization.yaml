@@ -6,3 +6,8 @@ resources:
 
 patchesStrategicMerge:
   - patches.yaml
+
+images:
+  - name: checkoutservice
+    newName: reg.ayazumman.com/checkoutservice
+    newTag: dev-latest

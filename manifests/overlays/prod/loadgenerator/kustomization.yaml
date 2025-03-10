@@ -6,3 +6,8 @@ resources:
 
 patchesStrategicMerge:
   - patches.yaml
+
+images:
+  - name: loadgenerator
+    newName: reg.ayazumman.com/loadgenerator
+    newTag: prod-latest

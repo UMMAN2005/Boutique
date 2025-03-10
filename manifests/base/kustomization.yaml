@@ -13,3 +13,10 @@ resources:
   - productcatalog
   - recommendation
   - shipping
+
+patchesStrategicMerge:
+  - patches.yaml
+
+commonLabels:
+  project: boutique
+  team: ayazumman

@@ -6,3 +6,8 @@ resources:
 
 patchesStrategicMerge:
   - patches.yaml
+
+images:
+  - name: adservice
+    newName: reg.ayazumman.com/adservice
+    newTag: prod-latest

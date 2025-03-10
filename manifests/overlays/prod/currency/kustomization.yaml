@@ -6,3 +6,8 @@ resources:
 
 patchesStrategicMerge:
   - patches.yaml
+
+images:
+  - name: currencyservice
+    newName: reg.ayazumman.com/currencyservice
+    newTag: prod-latest

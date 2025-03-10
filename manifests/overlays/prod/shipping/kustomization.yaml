@@ -6,3 +6,8 @@ resources:
 
 patchesStrategicMerge:
   - patches.yaml
+
+images:
+  - name: shippingservice
+    newName: reg.ayazumman.com/shippingservice
+    newTag: prod-latest

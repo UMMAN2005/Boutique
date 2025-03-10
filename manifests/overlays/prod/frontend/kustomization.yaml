@@ -6,3 +6,8 @@ resources:
 
 patchesStrategicMerge:
   - patches.yaml
+
+images:
+  - name: frontend
+    newName: reg.ayazumman.com/frontend
+    newTag: prod-latest

@@ -6,3 +6,8 @@ resources:
 
 patchesStrategicMerge:
   - patches.yaml
+
+images:
+  - name: productcatalogservice
+    newName: reg.ayazumman.com/productcatalogservice
+    newTag: prod-latest

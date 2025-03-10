@@ -16,3 +16,6 @@ resources:
 
 patchesStrategicMerge:
   - patches.yaml
+
+commonLabels:
+  environment: prod

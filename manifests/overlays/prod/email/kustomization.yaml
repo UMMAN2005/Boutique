@@ -6,3 +6,8 @@ resources:
 
 patchesStrategicMerge:
   - patches.yaml
+
+images:
+  - name: emailservice
+    newName: reg.ayazumman.com/emailservice
+    newTag: prod-latest
