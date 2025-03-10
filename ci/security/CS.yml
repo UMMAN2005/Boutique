@@ -1,8 +1,8 @@
 # Image scan with Trivy
 .trivy:
-  stage: image-scan
+  stage: cs
   image:
-    name: docker.io/aquasec/trivy:latest
+    name: aquasec/trivy:latest
     entrypoint: [""]
   variables:
     FULL_IMAGE_NAME: "$DOCKER_IMAGE:$IMAGE_TAG"

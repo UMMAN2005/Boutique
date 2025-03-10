@@ -1,6 +1,6 @@
 # Building a Docker image and slimming it with Slim
-docker-build:
-  stage: docker-build
+.docker:
+  stage: containerization
   image: docker:20.10.7
   tags:
     - docker
@@ -31,11 +31,7 @@ docker-build:
         docker tag $DOCKER_IMAGE:$IMAGE_TAG-fat $DOCKER_IMAGE:$IMAGE_TAG;
       fi
   after_script:
-    - docker tag $DOCKER_IMAGE:$IMAGE_TAG $DOCKER_IMAGE:$IMAGE_TAG-dev
-    - docker tag $DOCKER_IMAGE:$IMAGE_TAG $DOCKER_IMAGE:$IMAGE_TAG-prod
-    - docker push $DOCKER_IMAGE:$IMAGE_TAG-dev
-    - docker push $DOCKER_IMAGE:$IMAGE_TAG-prod
-  only:
-    - main
-    - merge_requests
-    - release/*
+    - docker tag $DOCKER_IMAGE:$IMAGE_TAG $DOCKER_IMAGE:dev-$IMAGE_TAG
+    - docker tag $DOCKER_IMAGE:$IMAGE_TAG $DOCKER_IMAGE:prod-$IMAGE_TAG
+    - docker push $DOCKER_IMAGE:dev-$IMAGE_TAG
+    - docker push $DOCKER_IMAGE:prod-$IMAGE_TAG

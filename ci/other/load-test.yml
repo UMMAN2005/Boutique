@@ -1,3 +1,6 @@
+variables:
+  DEV_URL: "https://dev.ayazumman.xyz"
+
 # Load testing with k6
 .k6:
   stage: load-test

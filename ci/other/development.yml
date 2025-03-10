@@ -1,5 +1,5 @@
 # Deploy to development
-dev-deploy:
+.dev-deploy:
   stage: dev-deploy
   when: on_success
   image: alpine:latest
@@ -39,19 +39,11 @@ dev-deploy:
         "https://gitlab.ayazumman.xyz/api/v4/projects/7/merge_requests"
   after_script:
     - git push origin --delete $TEMP_BRANCH || true
-  only:
-    - main
-    - merge_requests
-    - release/*
 
 # Development merge and sync stage
-dev-merge-and-sync:
+.dev-merge-and-sync:
   stage: dev-merge-and-sync
   when: manual
   image: alpine:latest
   script:
     - echo "This job is a manual job to remember to merge and sync the changes to development."
-  only:
-    - main
-    - merge_requests
-    - release/*

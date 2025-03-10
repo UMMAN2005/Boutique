@@ -5,7 +5,7 @@ variables:
   SEMGREP_CONFIG: "auto"
 
 # SAST using SonarQube
-.sonarqube-scan:
+.sonarqube:
   stage: sast
   image: sonarsource/sonar-scanner-cli:latest
   script:
@@ -13,7 +13,7 @@ variables:
   allow_failure: true
 
 # SAST using Semgrep
-.semgrep-scan:
+.semgrep:
   stage: sast
   image: returntocorp/semgrep:latest
   script:
