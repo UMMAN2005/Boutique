@@ -9,5 +9,5 @@ patchesStrategicMerge:
 
 images:
   - name: currencyservice
-    newName: reg.ayazumman.com/currencyservice
+    newName: reg.ayazumman.xyz/currencyservice
     newTag: prod-latest

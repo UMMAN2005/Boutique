@@ -9,5 +9,5 @@ patchesStrategicMerge:
 
 images:
   - name: frontend
-    newName: reg.ayazumman.com/frontend
+    newName: reg.ayazumman.xyz/frontend
     newTag: dev-latest

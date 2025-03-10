@@ -10,4 +10,4 @@ resources:
   - argo
 
 components:
-  - ../../components/istio
+  - ../../components/gateway

@@ -9,5 +9,5 @@ patchesStrategicMerge:
 
 images:
   - name: productcatalogservice
-    newName: reg.ayazumman.com/productcatalogservice
+    newName: reg.ayazumman.xyz/productcatalogservice
     newTag: dev-latest

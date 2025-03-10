@@ -9,5 +9,5 @@ patchesStrategicMerge:
 
 images:
   - name: cartservice
-    newName: reg.ayazumman.com/cartservice
+    newName: reg.ayazumman.xyz/cartservice
     newTag: dev-latest

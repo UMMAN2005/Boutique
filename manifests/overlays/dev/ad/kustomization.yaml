@@ -9,5 +9,5 @@ patchesStrategicMerge:
 
 images:
   - name: adservice
-    newName: reg.ayazumman.com/adservice
+    newName: reg.ayazumman.xyz/adservice
     newTag: dev-latest

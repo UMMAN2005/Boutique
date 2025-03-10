@@ -9,5 +9,5 @@ patchesStrategicMerge:
 
 images:
   - name: recommendationservice
-    newName: reg.ayazumman.com/recommendationservice
+    newName: reg.ayazumman.xyz/recommendationservice
     newTag: dev-latest

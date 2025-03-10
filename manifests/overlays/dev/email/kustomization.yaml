@@ -9,5 +9,5 @@ patchesStrategicMerge:
 
 images:
   - name: emailservice
-    newName: reg.ayazumman.com/emailservice
+    newName: reg.ayazumman.xyz/emailservice
     newTag: dev-latest

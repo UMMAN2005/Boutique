@@ -9,5 +9,5 @@ patchesStrategicMerge:
 
 images:
   - name: shippingservice
-    newName: reg.ayazumman.com/shippingservice
+    newName: reg.ayazumman.xyz/shippingservice
     newTag: dev-latest

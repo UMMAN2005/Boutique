@@ -9,5 +9,5 @@ patchesStrategicMerge:
 
 images:
   - name: paymentservice
-    newName: reg.ayazumman.com/paymentservice
+    newName: reg.ayazumman.xyz/paymentservice
     newTag: dev-latest

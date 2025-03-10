@@ -9,5 +9,5 @@ patchesStrategicMerge:
 
 images:
   - name: checkoutservice
-    newName: reg.ayazumman.com/checkoutservice
+    newName: reg.ayazumman.xyz/checkoutservice
     newTag: prod-latest

@@ -9,5 +9,5 @@ patchesStrategicMerge:
 
 images:
   - name: loadgenerator
-    newName: reg.ayazumman.com/loadgenerator
+    newName: reg.ayazumman.xyz/loadgenerator
     newTag: dev-latest
