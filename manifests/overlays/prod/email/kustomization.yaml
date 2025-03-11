@@ -1,13 +1,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
 resources:
-  - ../../../base/email
-
-patchesStrategicMerge:
-  - patches.yaml
-
+- ../../../base/email
 images:
-  - name: emailservice
-    newName: reg.ayazumman.xyz/emailservice
-    newTag: prod-latest
+- name: emailservice
+  newName: reg.ayazumman.xyz/emailservice
+  newTag: prod-latest
+patches:
+- path: patches.yaml

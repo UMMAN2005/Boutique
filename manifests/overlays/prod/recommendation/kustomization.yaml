@@ -1,13 +1,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
 resources:
-  - ../../../base/recommendation
-
-patchesStrategicMerge:
-  - patches.yaml
-
+- ../../../base/recommendation
 images:
-  - name: recommendationservice
-    newName: reg.ayazumman.xyz/recommendationservice
-    newTag: prod-latest
+- name: recommendationservice
+  newName: reg.ayazumman.xyz/recommendationservice
+  newTag: prod-latest
+patches:
+- path: patches.yaml
