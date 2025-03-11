@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - k8s
   - istio
-  - scale
-  - observability
+  #   - scale
+  #   - observability
   - security
-  - argo
