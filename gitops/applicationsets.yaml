@@ -32,6 +32,7 @@ spec:
         path: manifests/overlays/{{.env}}/ad
       destination:
         server: "{{.cluster}}"
+        namespace: adservice
       syncPolicy:
         automated:
           prune: true
@@ -73,6 +74,7 @@ spec:
         path: manifests/overlays/{{.env}}/cart
       destination:
         server: "{{.cluster}}"
+        namespace: cartservice
       syncPolicy:
         automated:
           prune: true
@@ -114,6 +116,7 @@ spec:
         path: manifests/overlays/{{.env}}/checkout
       destination:
         server: "{{.cluster}}"
+        namespace: checkoutservice
       syncPolicy:
         automated:
           prune: true
@@ -155,6 +158,7 @@ spec:
         path: manifests/overlays/{{.env}}/currency
       destination:
         server: "{{.cluster}}"
+        namespace: currencyservice
       syncPolicy:
         automated:
           prune: true
@@ -196,6 +200,7 @@ spec:
         path: manifests/overlays/{{.env}}/email
       destination:
         server: "{{.cluster}}"
+        namespace: emailservice
       syncPolicy:
         automated:
           prune: true
@@ -237,6 +242,7 @@ spec:
         path: manifests/overlays/{{.env}}/frontend
       destination:
         server: "{{.cluster}}"
+        namespace: frontend
       syncPolicy:
         automated:
           prune: true
@@ -278,6 +284,7 @@ spec:
         path: manifests/overlays/{{.env}}/loadgenerator
       destination:
         server: "{{.cluster}}"
+        namespace: loadgenerator
       syncPolicy:
         automated:
           prune: true
@@ -319,6 +326,7 @@ spec:
         path: manifests/overlays/{{.env}}/payment
       destination:
         server: "{{.cluster}}"
+        namespace: paymentservice
       syncPolicy:
         automated:
           prune: true
@@ -360,6 +368,7 @@ spec:
         path: manifests/overlays/{{.env}}/productcatalog
       destination:
         server: "{{.cluster}}"
+        namespace: productcatalogservice
       syncPolicy:
         automated:
           prune: true
@@ -401,6 +410,7 @@ spec:
         path: manifests/overlays/{{.env}}/recommendation
       destination:
         server: "{{.cluster}}"
+        namespace: recommendationservice
       syncPolicy:
         automated:
           prune: true
@@ -442,6 +452,7 @@ spec:
         path: manifests/overlays/{{.env}}/shipping
       destination:
         server: "{{.cluster}}"
+        namespace: shippingservice
       syncPolicy:
         automated:
           prune: true
