@@ -16,5 +16,5 @@ labels:
   - includeSelectors: true
     pairs:
       environment: dev
-patches:
-  - path: patches.yaml
+# patches:
+#   - path: patches.yaml
