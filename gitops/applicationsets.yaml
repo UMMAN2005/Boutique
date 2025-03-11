@@ -1,0 +1,428 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: adservice-applications
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - env: dev
+            cluster: https://kubernetes.default.svc
+            branch: develop
+          - env: prod
+            cluster: https://kubernetes.default.svc
+            branch: main
+  template:
+    metadata:
+      name: adservice-{{.env}}
+      annotations:
+        argocd-image-updater.argoproj.io/image-list: |
+          adservice=reg.ayazumman.xyz/adservice:{{.env}}-*;timestamp
+        argocd-image-updater.argoproj.io/write-back-method: git
+        argocd-image-updater.argoproj.io/write-back-target: kustomization
+        argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
+    spec:
+      project: boutique
+      source:
+        repoURL: https://github.com/UMMAN2005/Boutique.git
+        targetRevision: "{{.branch}}"
+        path: manifests/overlays/{{.env}}/ad
+      destination:
+        server: "{{.cluster}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cartservice-applications
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - env: dev
+            cluster: https://kubernetes.default.svc
+            branch: develop
+          - env: prod
+            cluster: https://kubernetes.default.svc
+            branch: main
+  template:
+    metadata:
+      name: cartservice-{{.env}}
+      annotations:
+        argocd-image-updater.argoproj.io/image-list: |
+          cartservice=reg.ayazumman.xyz/cartservice:{{.env}}-*;timestamp
+        argocd-image-updater.argoproj.io/write-back-method: git
+        argocd-image-updater.argoproj.io/write-back-target: kustomization
+        argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
+    spec:
+      project: boutique
+      source:
+        repoURL: https://github.com/UMMAN2005/Boutique.git
+        targetRevision: "{{.branch}}"
+        path: manifests/overlays/{{.env}}/cart
+      destination:
+        server: "{{.cluster}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: checkoutservice-applications
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - env: dev
+            cluster: https://kubernetes.default.svc
+            branch: develop
+          - env: prod
+            cluster: https://kubernetes.default.svc
+            branch: main
+  template:
+    metadata:
+      name: checkoutservice-{{.env}}
+      annotations:
+        argocd-image-updater.argoproj.io/image-list: |
+          checkoutservice=reg.ayazumman.xyz/checkoutservice:{{.env}}-*;timestamp
+        argocd-image-updater.argoproj.io/write-back-method: git
+        argocd-image-updater.argoproj.io/write-back-target: kustomization
+        argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
+    spec:
+      project: boutique
+      source:
+        repoURL: https://github.com/UMMAN2005/Boutique.git
+        targetRevision: "{{.branch}}"
+        path: manifests/overlays/{{.env}}/checkout
+      destination:
+        server: "{{.cluster}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: currencyservice-applications
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - env: dev
+            cluster: https://kubernetes.default.svc
+            branch: develop
+          - env: prod
+            cluster: https://kubernetes.default.svc
+            branch: main
+  template:
+    metadata:
+      name: currencyservice-{{.env}}
+      annotations:
+        argocd-image-updater.argoproj.io/image-list: |
+          currencyservice=reg.ayazumman.xyz/currencyservice:{{.env}}-*;timestamp
+        argocd-image-updater.argoproj.io/write-back-method: git
+        argocd-image-updater.argoproj.io/write-back-target: kustomization
+        argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
+    spec:
+      project: boutique
+      source:
+        repoURL: https://github.com/UMMAN2005/Boutique.git
+        targetRevision: "{{.branch}}"
+        path: manifests/overlays/{{.env}}/currency
+      destination:
+        server: "{{.cluster}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: emailservice-applications
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - env: dev
+            cluster: https://kubernetes.default.svc
+            branch: develop
+          - env: prod
+            cluster: https://kubernetes.default.svc
+            branch: main
+  template:
+    metadata:
+      name: emailservice-{{.env}}
+      annotations:
+        argocd-image-updater.argoproj.io/image-list: |
+          emailservice=reg.ayazumman.xyz/emailservice:{{.env}}-*;timestamp
+        argocd-image-updater.argoproj.io/write-back-method: git
+        argocd-image-updater.argoproj.io/write-back-target: kustomization
+        argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
+    spec:
+      project: boutique
+      source:
+        repoURL: https://github.com/UMMAN2005/Boutique.git
+        targetRevision: "{{.branch}}"
+        path: manifests/overlays/{{.env}}/email
+      destination:
+        server: "{{.cluster}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: frontend-applications
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - env: dev
+            cluster: https://kubernetes.default.svc
+            branch: develop
+          - env: prod
+            cluster: https://kubernetes.default.svc
+            branch: main
+  template:
+    metadata:
+      name: frontend-{{.env}}
+      annotations:
+        argocd-image-updater.argoproj.io/image-list: |
+          frontend=reg.ayazumman.xyz/frontend:{{.env}}-*;timestamp
+        argocd-image-updater.argoproj.io/write-back-method: git
+        argocd-image-updater.argoproj.io/write-back-target: kustomization
+        argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
+    spec:
+      project: boutique
+      source:
+        repoURL: https://github.com/UMMAN2005/Boutique.git
+        targetRevision: "{{.branch}}"
+        path: manifests/overlays/{{.env}}/frontend
+      destination:
+        server: "{{.cluster}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: loadgenerator-applications
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - env: dev
+            cluster: https://kubernetes.default.svc
+            branch: develop
+          - env: prod
+            cluster: https://kubernetes.default.svc
+            branch: main
+  template:
+    metadata:
+      name: loadgenerator-{{.env}}
+      annotations:
+        argocd-image-updater.argoproj.io/image-list: |
+          loadgenerator=reg.ayazumman.xyz/loadgenerator:{{.env}}-*;timestamp
+        argocd-image-updater.argoproj.io/write-back-method: git
+        argocd-image-updater.argoproj.io/write-back-target: kustomization
+        argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
+    spec:
+      project: boutique
+      source:
+        repoURL: https://github.com/UMMAN2005/Boutique.git
+        targetRevision: "{{.branch}}"
+        path: manifests/overlays/{{.env}}/loadgenerator
+      destination:
+        server: "{{.cluster}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: paymentservice-applications
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - env: dev
+            cluster: https://kubernetes.default.svc
+            branch: develop
+          - env: prod
+            cluster: https://kubernetes.default.svc
+            branch: main
+  template:
+    metadata:
+      name: paymentservice-{{.env}}
+      annotations:
+        argocd-image-updater.argoproj.io/image-list: |
+          paymentservice=reg.ayazumman.xyz/paymentservice:{{.env}}-*;timestamp
+        argocd-image-updater.argoproj.io/write-back-method: git
+        argocd-image-updater.argoproj.io/write-back-target: kustomization
+        argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
+    spec:
+      project: boutique
+      source:
+        repoURL: https://github.com/UMMAN2005/Boutique.git
+        targetRevision: "{{.branch}}"
+        path: manifests/overlays/{{.env}}/payment
+      destination:
+        server: "{{.cluster}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: productcatalogservice-applications
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - env: dev
+            cluster: https://kubernetes.default.svc
+            branch: develop
+          - env: prod
+            cluster: https://kubernetes.default.svc
+            branch: main
+  template:
+    metadata:
+      name: productcatalogservice-{{.env}}
+      annotations:
+        argocd-image-updater.argoproj.io/image-list: |
+          productcatalogservice=reg.ayazumman.xyz/productcatalogservice:{{.env}}-*;timestamp
+        argocd-image-updater.argoproj.io/write-back-method: git
+        argocd-image-updater.argoproj.io/write-back-target: kustomization
+        argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
+    spec:
+      project: boutique
+      source:
+        repoURL: https://github.com/UMMAN2005/Boutique.git
+        targetRevision: "{{.branch}}"
+        path: manifests/overlays/{{.env}}/productcatalog
+      destination:
+        server: "{{.cluster}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: recommendationservice-applications
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - env: dev
+            cluster: https://kubernetes.default.svc
+            branch: develop
+          - env: prod
+            cluster: https://kubernetes.default.svc
+            branch: main
+  template:
+    metadata:
+      name: recommendationservice-{{.env}}
+      annotations:
+        argocd-image-updater.argoproj.io/image-list: |
+          recommendationservice=reg.ayazumman.xyz/recommendationservice:{{.env}}-*;timestamp
+        argocd-image-updater.argoproj.io/write-back-method: git
+        argocd-image-updater.argoproj.io/write-back-target: kustomization
+        argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
+    spec:
+      project: boutique
+      source:
+        repoURL: https://github.com/UMMAN2005/Boutique.git
+        targetRevision: "{{.branch}}"
+        path: manifests/overlays/{{.env}}/recommendation
+      destination:
+        server: "{{.cluster}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: shippingservice-applications
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - env: dev
+            cluster: https://kubernetes.default.svc
+            branch: develop
+          - env: prod
+            cluster: https://kubernetes.default.svc
+            branch: main
+  template:
+    metadata:
+      name: shippingservice-{{.env}}
+      annotations:
+        argocd-image-updater.argoproj.io/image-list: |
+          shippingservice=reg.ayazumman.xyz/shippingservice:{{.env}}-*;timestamp
+        argocd-image-updater.argoproj.io/write-back-method: git
+        argocd-image-updater.argoproj.io/write-back-target: kustomization
+        argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
+    spec:
+      project: boutique
+      source:
+        repoURL: https://github.com/UMMAN2005/Boutique.git
+        targetRevision: "{{.branch}}"
+        path: manifests/overlays/{{.env}}/shipping
+      destination:
+        server: "{{.cluster}}"
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
