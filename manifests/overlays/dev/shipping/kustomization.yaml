@@ -1,13 +1,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
 resources:
-  - ../../../base/shipping
-
-patchesStrategicMerge:
-  - patches.yaml
-
+- ../../../base/shipping
 images:
-  - name: shippingservice
-    newName: reg.ayazumman.xyz/shippingservice
-    newTag: dev-latest
+- name: shippingservice
+  newName: reg.ayazumman.xyz/shippingservice
+  newTag: dev-latest
+patches:
+- path: patches.yaml

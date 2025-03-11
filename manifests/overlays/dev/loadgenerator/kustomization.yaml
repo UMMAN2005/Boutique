@@ -1,13 +1,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
 resources:
-  - ../../../base/loadgenerator
-
-patchesStrategicMerge:
-  - patches.yaml
-
+- ../../../base/loadgenerator
 images:
-  - name: loadgenerator
-    newName: reg.ayazumman.xyz/loadgenerator
-    newTag: dev-latest
+- name: loadgenerator
+  newName: reg.ayazumman.xyz/loadgenerator
+  newTag: dev-latest
+patches:
+- path: patches.yaml

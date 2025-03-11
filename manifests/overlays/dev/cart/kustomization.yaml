@@ -1,13 +1,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
 resources:
-  - ../../../base/cart
-
-patchesStrategicMerge:
-  - patches.yaml
-
+- ../../../base/cart
 images:
-  - name: cartservice
-    newName: reg.ayazumman.xyz/cartservice
-    newTag: dev-latest
+- name: cartservice
+  newName: reg.ayazumman.xyz/cartservice
+  newTag: dev-latest
+patches:
+- path: patches.yaml
