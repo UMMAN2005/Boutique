@@ -3,7 +3,7 @@ kind: Kustomization
 
 resources:
   - k8s
-  - istio
+  #   - istio
   #   - scale
   #   - observability
   - security
