@@ -13,3 +13,4 @@ spec:
         protocol: HTTP
       hosts:
         - "ayazumman.xyz"
+        - "*.ayazumman.xyz"
