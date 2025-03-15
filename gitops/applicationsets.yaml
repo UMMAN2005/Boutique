@@ -10,26 +10,26 @@ spec:
     - list:
         elements:
           - env: dev
-            cluster: https://kubernetes.default.svc
+            cluster: https://test-aks-rg-cluster-f7d0tvqb.privatelink.brazilsouth.azmk8s.io:443
             branch: develop
           - env: prod
-            cluster: https://kubernetes.default.svc
+            cluster: https://aks-rg-cluster-edtpvzbr.privatelink.centralus.azmk8s.io:443
             branch: main
   template:
     metadata:
       name: adservice-{{.env}}
       annotations:
         argocd-image-updater.argoproj.io/image-list: |
-          adservice=reg.ayazumman.xyz/adservice:{{.env}}-*;timestamp
+          adservice=finalprojectacridtech.azurecr.io/adservice:{{.env}}-*;timestamp
         argocd-image-updater.argoproj.io/write-back-method: git
         argocd-image-updater.argoproj.io/write-back-target: kustomization
         argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
     spec:
       project: boutique
       source:
-        repoURL: https://github.com/UMMAN2005/Boutique.git
+        repoURL: https://gitlab.ayazumman.xyz/devops/manifests.git
         targetRevision: "{{.branch}}"
-        path: manifests/overlays/{{.env}}/ad
+        path: overlays/{{.env}}/ad
       destination:
         server: "{{.cluster}}"
         namespace: adservice
@@ -52,26 +52,26 @@ spec:
     - list:
         elements:
           - env: dev
-            cluster: https://kubernetes.default.svc
+            cluster: https://test-aks-rg-cluster-f7d0tvqb.privatelink.brazilsouth.azmk8s.io:443
             branch: develop
           - env: prod
-            cluster: https://kubernetes.default.svc
+            cluster: https://aks-rg-cluster-edtpvzbr.privatelink.centralus.azmk8s.io:443
             branch: main
   template:
     metadata:
       name: cartservice-{{.env}}
       annotations:
         argocd-image-updater.argoproj.io/image-list: |
-          cartservice=reg.ayazumman.xyz/cartservice:{{.env}}-*;timestamp
+          cartservice=finalprojectacridtech.azurecr.io/cartservice:{{.env}}-*;timestamp
         argocd-image-updater.argoproj.io/write-back-method: git
         argocd-image-updater.argoproj.io/write-back-target: kustomization
         argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
     spec:
       project: boutique
       source:
-        repoURL: https://github.com/UMMAN2005/Boutique.git
+        repoURL: https://gitlab.ayazumman.xyz/devops/manifests.git
         targetRevision: "{{.branch}}"
-        path: manifests/overlays/{{.env}}/cart
+        path: overlays/{{.env}}/cart
       destination:
         server: "{{.cluster}}"
         namespace: cartservice
@@ -94,26 +94,26 @@ spec:
     - list:
         elements:
           - env: dev
-            cluster: https://kubernetes.default.svc
+            cluster: https://test-aks-rg-cluster-f7d0tvqb.privatelink.brazilsouth.azmk8s.io:443
             branch: develop
           - env: prod
-            cluster: https://kubernetes.default.svc
+            cluster: https://aks-rg-cluster-edtpvzbr.privatelink.centralus.azmk8s.io:443
             branch: main
   template:
     metadata:
       name: checkoutservice-{{.env}}
       annotations:
         argocd-image-updater.argoproj.io/image-list: |
-          checkoutservice=reg.ayazumman.xyz/checkoutservice:{{.env}}-*;timestamp
+          checkoutservice=finalprojectacridtech.azurecr.io/checkoutservice:{{.env}}-*;timestamp
         argocd-image-updater.argoproj.io/write-back-method: git
         argocd-image-updater.argoproj.io/write-back-target: kustomization
         argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
     spec:
       project: boutique
       source:
-        repoURL: https://github.com/UMMAN2005/Boutique.git
+        repoURL: https://gitlab.ayazumman.xyz/devops/manifests.git
         targetRevision: "{{.branch}}"
-        path: manifests/overlays/{{.env}}/checkout
+        path: overlays/{{.env}}/checkout
       destination:
         server: "{{.cluster}}"
         namespace: checkoutservice
@@ -136,26 +136,26 @@ spec:
     - list:
         elements:
           - env: dev
-            cluster: https://kubernetes.default.svc
+            cluster: https://test-aks-rg-cluster-f7d0tvqb.privatelink.brazilsouth.azmk8s.io:443
             branch: develop
           - env: prod
-            cluster: https://kubernetes.default.svc
+            cluster: https://aks-rg-cluster-edtpvzbr.privatelink.centralus.azmk8s.io:443
             branch: main
   template:
     metadata:
       name: currencyservice-{{.env}}
       annotations:
         argocd-image-updater.argoproj.io/image-list: |
-          currencyservice=reg.ayazumman.xyz/currencyservice:{{.env}}-*;timestamp
+          currencyservice=finalprojectacridtech.azurecr.io/currencyservice:{{.env}}-*;timestamp
         argocd-image-updater.argoproj.io/write-back-method: git
         argocd-image-updater.argoproj.io/write-back-target: kustomization
         argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
     spec:
       project: boutique
       source:
-        repoURL: https://github.com/UMMAN2005/Boutique.git
+        repoURL: https://gitlab.ayazumman.xyz/devops/manifests.git
         targetRevision: "{{.branch}}"
-        path: manifests/overlays/{{.env}}/currency
+        path: overlays/{{.env}}/currency
       destination:
         server: "{{.cluster}}"
         namespace: currencyservice
@@ -178,26 +178,26 @@ spec:
     - list:
         elements:
           - env: dev
-            cluster: https://kubernetes.default.svc
+            cluster: https://test-aks-rg-cluster-f7d0tvqb.privatelink.brazilsouth.azmk8s.io:443
             branch: develop
           - env: prod
-            cluster: https://kubernetes.default.svc
+            cluster: https://aks-rg-cluster-edtpvzbr.privatelink.centralus.azmk8s.io:443
             branch: main
   template:
     metadata:
       name: emailservice-{{.env}}
       annotations:
         argocd-image-updater.argoproj.io/image-list: |
-          emailservice=reg.ayazumman.xyz/emailservice:{{.env}}-*;timestamp
+          emailservice=finalprojectacridtech.azurecr.io/emailservice:{{.env}}-*;timestamp
         argocd-image-updater.argoproj.io/write-back-method: git
         argocd-image-updater.argoproj.io/write-back-target: kustomization
         argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
     spec:
       project: boutique
       source:
-        repoURL: https://github.com/UMMAN2005/Boutique.git
+        repoURL: https://gitlab.ayazumman.xyz/devops/manifests.git
         targetRevision: "{{.branch}}"
-        path: manifests/overlays/{{.env}}/email
+        path: overlays/{{.env}}/email
       destination:
         server: "{{.cluster}}"
         namespace: emailservice
@@ -220,26 +220,26 @@ spec:
     - list:
         elements:
           - env: dev
-            cluster: https://kubernetes.default.svc
+            cluster: https://test-aks-rg-cluster-f7d0tvqb.privatelink.brazilsouth.azmk8s.io:443
             branch: develop
           - env: prod
-            cluster: https://kubernetes.default.svc
+            cluster: https://aks-rg-cluster-edtpvzbr.privatelink.centralus.azmk8s.io:443
             branch: main
   template:
     metadata:
       name: frontend-{{.env}}
       annotations:
         argocd-image-updater.argoproj.io/image-list: |
-          frontend=reg.ayazumman.xyz/frontend:{{.env}}-*;timestamp
+          frontend=finalprojectacridtech.azurecr.io/frontend:{{.env}}-*;timestamp
         argocd-image-updater.argoproj.io/write-back-method: git
         argocd-image-updater.argoproj.io/write-back-target: kustomization
         argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
     spec:
       project: boutique
       source:
-        repoURL: https://github.com/UMMAN2005/Boutique.git
+        repoURL: https://gitlab.ayazumman.xyz/devops/manifests.git
         targetRevision: "{{.branch}}"
-        path: manifests/overlays/{{.env}}/frontend
+        path: overlays/{{.env}}/frontend
       destination:
         server: "{{.cluster}}"
         namespace: frontend
@@ -262,26 +262,26 @@ spec:
     - list:
         elements:
           - env: dev
-            cluster: https://kubernetes.default.svc
+            cluster: https://test-aks-rg-cluster-f7d0tvqb.privatelink.brazilsouth.azmk8s.io:443
             branch: develop
           - env: prod
-            cluster: https://kubernetes.default.svc
+            cluster: https://aks-rg-cluster-edtpvzbr.privatelink.centralus.azmk8s.io:443
             branch: main
   template:
     metadata:
       name: loadgenerator-{{.env}}
       annotations:
         argocd-image-updater.argoproj.io/image-list: |
-          loadgenerator=reg.ayazumman.xyz/loadgenerator:{{.env}}-*;timestamp
+          loadgenerator=finalprojectacridtech.azurecr.io/loadgenerator:{{.env}}-*;timestamp
         argocd-image-updater.argoproj.io/write-back-method: git
         argocd-image-updater.argoproj.io/write-back-target: kustomization
         argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
     spec:
       project: boutique
       source:
-        repoURL: https://github.com/UMMAN2005/Boutique.git
+        repoURL: https://gitlab.ayazumman.xyz/devops/manifests.git
         targetRevision: "{{.branch}}"
-        path: manifests/overlays/{{.env}}/loadgenerator
+        path: overlays/{{.env}}/loadgenerator
       destination:
         server: "{{.cluster}}"
         namespace: loadgenerator
@@ -304,26 +304,26 @@ spec:
     - list:
         elements:
           - env: dev
-            cluster: https://kubernetes.default.svc
+            cluster: https://test-aks-rg-cluster-f7d0tvqb.privatelink.brazilsouth.azmk8s.io:443
             branch: develop
           - env: prod
-            cluster: https://kubernetes.default.svc
+            cluster: https://aks-rg-cluster-edtpvzbr.privatelink.centralus.azmk8s.io:443
             branch: main
   template:
     metadata:
       name: paymentservice-{{.env}}
       annotations:
         argocd-image-updater.argoproj.io/image-list: |
-          paymentservice=reg.ayazumman.xyz/paymentservice:{{.env}}-*;timestamp
+          paymentservice=finalprojectacridtech.azurecr.io/paymentservice:{{.env}}-*;timestamp
         argocd-image-updater.argoproj.io/write-back-method: git
         argocd-image-updater.argoproj.io/write-back-target: kustomization
         argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
     spec:
       project: boutique
       source:
-        repoURL: https://github.com/UMMAN2005/Boutique.git
+        repoURL: https://gitlab.ayazumman.xyz/devops/manifests.git
         targetRevision: "{{.branch}}"
-        path: manifests/overlays/{{.env}}/payment
+        path: overlays/{{.env}}/payment
       destination:
         server: "{{.cluster}}"
         namespace: paymentservice
@@ -346,26 +346,26 @@ spec:
     - list:
         elements:
           - env: dev
-            cluster: https://kubernetes.default.svc
+            cluster: https://test-aks-rg-cluster-f7d0tvqb.privatelink.brazilsouth.azmk8s.io:443
             branch: develop
           - env: prod
-            cluster: https://kubernetes.default.svc
+            cluster: https://aks-rg-cluster-edtpvzbr.privatelink.centralus.azmk8s.io:443
             branch: main
   template:
     metadata:
       name: productcatalogservice-{{.env}}
       annotations:
         argocd-image-updater.argoproj.io/image-list: |
-          productcatalogservice=reg.ayazumman.xyz/productcatalogservice:{{.env}}-*;timestamp
+          productcatalogservice=finalprojectacridtech.azurecr.io/productcatalogservice:{{.env}}-*;timestamp
         argocd-image-updater.argoproj.io/write-back-method: git
         argocd-image-updater.argoproj.io/write-back-target: kustomization
         argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
     spec:
       project: boutique
       source:
-        repoURL: https://github.com/UMMAN2005/Boutique.git
+        repoURL: https://gitlab.ayazumman.xyz/devops/manifests.git
         targetRevision: "{{.branch}}"
-        path: manifests/overlays/{{.env}}/productcatalog
+        path: overlays/{{.env}}/productcatalog
       destination:
         server: "{{.cluster}}"
         namespace: productcatalogservice
@@ -388,26 +388,26 @@ spec:
     - list:
         elements:
           - env: dev
-            cluster: https://kubernetes.default.svc
+            cluster: https://test-aks-rg-cluster-f7d0tvqb.privatelink.brazilsouth.azmk8s.io:443
             branch: develop
           - env: prod
-            cluster: https://kubernetes.default.svc
+            cluster: https://aks-rg-cluster-edtpvzbr.privatelink.centralus.azmk8s.io:443
             branch: main
   template:
     metadata:
       name: recommendationservice-{{.env}}
       annotations:
         argocd-image-updater.argoproj.io/image-list: |
-          recommendationservice=reg.ayazumman.xyz/recommendationservice:{{.env}}-*;timestamp
+          recommendationservice=finalprojectacridtech.azurecr.io/recommendationservice:{{.env}}-*;timestamp
         argocd-image-updater.argoproj.io/write-back-method: git
         argocd-image-updater.argoproj.io/write-back-target: kustomization
         argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
     spec:
       project: boutique
       source:
-        repoURL: https://github.com/UMMAN2005/Boutique.git
+        repoURL: https://gitlab.ayazumman.xyz/devops/manifests.git
         targetRevision: "{{.branch}}"
-        path: manifests/overlays/{{.env}}/recommendation
+        path: overlays/{{.env}}/recommendation
       destination:
         server: "{{.cluster}}"
         namespace: recommendationservice
@@ -430,26 +430,26 @@ spec:
     - list:
         elements:
           - env: dev
-            cluster: https://kubernetes.default.svc
+            cluster: https://test-aks-rg-cluster-f7d0tvqb.privatelink.brazilsouth.azmk8s.io:443
             branch: develop
           - env: prod
-            cluster: https://kubernetes.default.svc
+            cluster: https://aks-rg-cluster-edtpvzbr.privatelink.centralus.azmk8s.io:443
             branch: main
   template:
     metadata:
       name: shippingservice-{{.env}}
       annotations:
         argocd-image-updater.argoproj.io/image-list: |
-          shippingservice=reg.ayazumman.xyz/shippingservice:{{.env}}-*;timestamp
+          shippingservice=finalprojectacridtech.azurecr.io/shippingservice:{{.env}}-*;timestamp
         argocd-image-updater.argoproj.io/write-back-method: git
         argocd-image-updater.argoproj.io/write-back-target: kustomization
         argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
     spec:
       project: boutique
       source:
-        repoURL: https://github.com/UMMAN2005/Boutique.git
+        repoURL: https://gitlab.ayazumman.xyz/devops/manifests.git
         targetRevision: "{{.branch}}"
-        path: manifests/overlays/{{.env}}/shipping
+        path: overlays/{{.env}}/shipping
       destination:
         server: "{{.cluster}}"
         namespace: shippingservice
