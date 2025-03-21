@@ -5,5 +5,5 @@ metadata:
   description: Frontend microservice of Boutique Application.
 spec:
   type: website
-  owner: ummanmemmedov2005@gmail.com
+  owner: github
   lifecycle: experimenta
