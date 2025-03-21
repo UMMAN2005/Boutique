@@ -1,0 +1,9 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: frontend
+  description: Frontend microservice of Boutique Application.
+spec:
+  type: website
+  owner: ummanmemmedov2005@gmail.com
+  lifecycle: experimenta
