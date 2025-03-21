@@ -1,3 +1,12 @@
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: boutique
+  description: Boutique Application.
+spec:
+  owner: group:github
+---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
