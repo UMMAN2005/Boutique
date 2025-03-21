@@ -12,6 +12,8 @@ kind: Component
 metadata:
   name: frontend
   description: Frontend microservice of Boutique Application.
+  annotations:
+    backstage.io/techdocs-ref: frontend
 spec:
   type: website
   owner:  user:UMMAN2005
