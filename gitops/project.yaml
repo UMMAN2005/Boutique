@@ -6,7 +6,7 @@ metadata:
 spec:
   description: Boutique Store Microservices Project
   sourceRepos:
-    - https://github.com/UMMAN2005/Boutique.git
+    - https://gitlab.ayazumman.xyz/devops/manifests.git
   destinations:
     - namespace: "*"
       server: "*"

@@ -10,10 +10,10 @@ spec:
     - list:
         elements:
           - env: dev
-            cluster: https://test-aks-rg-cluster-f7d0tvqb.privatelink.brazilsouth.azmk8s.io:443
+            cluster: https://test-aks-rg-cluster-rxn2dw9w.privatelink.brazilsouth.azmk8s.io:443
             branch: develop
           - env: prod
-            cluster: https://aks-rg-cluster-edtpvzbr.privatelink.centralus.azmk8s.io:443
+            cluster: https://aks-rg-cluster-ticncpw4.privatelink.centralus.azmk8s.io:443
             branch: main
   template:
     metadata:
@@ -52,10 +52,10 @@ spec:
     - list:
         elements:
           - env: dev
-            cluster: https://test-aks-rg-cluster-f7d0tvqb.privatelink.brazilsouth.azmk8s.io:443
+            cluster: https://test-aks-rg-cluster-rxn2dw9w.privatelink.brazilsouth.azmk8s.io:443
             branch: develop
           - env: prod
-            cluster: https://aks-rg-cluster-edtpvzbr.privatelink.centralus.azmk8s.io:443
+            cluster: https://aks-rg-cluster-ticncpw4.privatelink.centralus.azmk8s.io:443
             branch: main
   template:
     metadata:
@@ -94,10 +94,10 @@ spec:
     - list:
         elements:
           - env: dev
-            cluster: https://test-aks-rg-cluster-f7d0tvqb.privatelink.brazilsouth.azmk8s.io:443
+            cluster: https://test-aks-rg-cluster-rxn2dw9w.privatelink.brazilsouth.azmk8s.io:443
             branch: develop
           - env: prod
-            cluster: https://aks-rg-cluster-edtpvzbr.privatelink.centralus.azmk8s.io:443
+            cluster: https://aks-rg-cluster-ticncpw4.privatelink.centralus.azmk8s.io:443
             branch: main
   template:
     metadata:
@@ -136,10 +136,10 @@ spec:
     - list:
         elements:
           - env: dev
-            cluster: https://test-aks-rg-cluster-f7d0tvqb.privatelink.brazilsouth.azmk8s.io:443
+            cluster: https://test-aks-rg-cluster-rxn2dw9w.privatelink.brazilsouth.azmk8s.io:443
             branch: develop
           - env: prod
-            cluster: https://aks-rg-cluster-edtpvzbr.privatelink.centralus.azmk8s.io:443
+            cluster: https://aks-rg-cluster-ticncpw4.privatelink.centralus.azmk8s.io:443
             branch: main
   template:
     metadata:
@@ -178,10 +178,10 @@ spec:
     - list:
         elements:
           - env: dev
-            cluster: https://test-aks-rg-cluster-f7d0tvqb.privatelink.brazilsouth.azmk8s.io:443
+            cluster: https://test-aks-rg-cluster-rxn2dw9w.privatelink.brazilsouth.azmk8s.io:443
             branch: develop
           - env: prod
-            cluster: https://aks-rg-cluster-edtpvzbr.privatelink.centralus.azmk8s.io:443
+            cluster: https://aks-rg-cluster-ticncpw4.privatelink.centralus.azmk8s.io:443
             branch: main
   template:
     metadata:
@@ -220,10 +220,10 @@ spec:
     - list:
         elements:
           - env: dev
-            cluster: https://test-aks-rg-cluster-f7d0tvqb.privatelink.brazilsouth.azmk8s.io:443
+            cluster: https://test-aks-rg-cluster-rxn2dw9w.privatelink.brazilsouth.azmk8s.io:443
             branch: develop
           - env: prod
-            cluster: https://aks-rg-cluster-edtpvzbr.privatelink.centralus.azmk8s.io:443
+            cluster: https://aks-rg-cluster-ticncpw4.privatelink.centralus.azmk8s.io:443
             branch: main
   template:
     metadata:
@@ -262,10 +262,10 @@ spec:
     - list:
         elements:
           - env: dev
-            cluster: https://test-aks-rg-cluster-f7d0tvqb.privatelink.brazilsouth.azmk8s.io:443
+            cluster: https://test-aks-rg-cluster-rxn2dw9w.privatelink.brazilsouth.azmk8s.io:443
             branch: develop
           - env: prod
-            cluster: https://aks-rg-cluster-edtpvzbr.privatelink.centralus.azmk8s.io:443
+            cluster: https://aks-rg-cluster-ticncpw4.privatelink.centralus.azmk8s.io:443
             branch: main
   template:
     metadata:
@@ -304,10 +304,10 @@ spec:
     - list:
         elements:
           - env: dev
-            cluster: https://test-aks-rg-cluster-f7d0tvqb.privatelink.brazilsouth.azmk8s.io:443
+            cluster: https://test-aks-rg-cluster-rxn2dw9w.privatelink.brazilsouth.azmk8s.io:443
             branch: develop
           - env: prod
-            cluster: https://aks-rg-cluster-edtpvzbr.privatelink.centralus.azmk8s.io:443
+            cluster: https://aks-rg-cluster-ticncpw4.privatelink.centralus.azmk8s.io:443
             branch: main
   template:
     metadata:
@@ -346,10 +346,10 @@ spec:
     - list:
         elements:
           - env: dev
-            cluster: https://test-aks-rg-cluster-f7d0tvqb.privatelink.brazilsouth.azmk8s.io:443
+            cluster: https://test-aks-rg-cluster-rxn2dw9w.privatelink.brazilsouth.azmk8s.io:443
             branch: develop
           - env: prod
-            cluster: https://aks-rg-cluster-edtpvzbr.privatelink.centralus.azmk8s.io:443
+            cluster: https://aks-rg-cluster-ticncpw4.privatelink.centralus.azmk8s.io:443
             branch: main
   template:
     metadata:
@@ -388,10 +388,10 @@ spec:
     - list:
         elements:
           - env: dev
-            cluster: https://test-aks-rg-cluster-f7d0tvqb.privatelink.brazilsouth.azmk8s.io:443
+            cluster: https://test-aks-rg-cluster-rxn2dw9w.privatelink.brazilsouth.azmk8s.io:443
             branch: develop
           - env: prod
-            cluster: https://aks-rg-cluster-edtpvzbr.privatelink.centralus.azmk8s.io:443
+            cluster: https://aks-rg-cluster-ticncpw4.privatelink.centralus.azmk8s.io:443
             branch: main
   template:
     metadata:
@@ -430,10 +430,10 @@ spec:
     - list:
         elements:
           - env: dev
-            cluster: https://test-aks-rg-cluster-f7d0tvqb.privatelink.brazilsouth.azmk8s.io:443
+            cluster: https://test-aks-rg-cluster-rxn2dw9w.privatelink.brazilsouth.azmk8s.io:443
             branch: develop
           - env: prod
-            cluster: https://aks-rg-cluster-edtpvzbr.privatelink.centralus.azmk8s.io:443
+            cluster: https://aks-rg-cluster-ticncpw4.privatelink.centralus.azmk8s.io:443
             branch: main
   template:
     metadata:
