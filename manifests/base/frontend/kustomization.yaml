@@ -11,4 +11,3 @@ resources:
 components:
   - ../../components/kyverno/mutate
   - ../../components/kyverno/validate
-  - ../../components/kyverno/cleanup
