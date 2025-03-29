@@ -1,0 +1,29 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: enforce-istio-injection-label
+spec:
+  rules:
+    - name: add-istio-injection-label
+      match:
+        any:
+          - resources:
+              kinds:
+                - Namespace
+              name: ".*service.*"
+          - resources:
+              kinds:
+                - Namespace
+              name: "frontend"
+          - resources:
+              kinds:
+                - Namespace
+              name: "loadgenerator"
+      generate:
+        kind: Namespace
+        name: "{{request.object.metadata.name}}"
+        synchronize: true
+        data:
+          metadata:
+            labels:
+              istio-injection: enabled

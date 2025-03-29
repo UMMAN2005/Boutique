@@ -10,29 +10,29 @@ metadata:
     policies.kyverno.io/description: >-
       In order for Istio to inject sidecars to workloads deployed into Namespaces, the label
       `istio-injection` must be set to `enabled`. This policy ensures that all new Namespaces
-      set `istio-inject` to `enabled`.      
+      set `istio-inject` to `enabled`.
 spec:
   validationFailureAction: Audit
   background: true
   rules:
-  - name: check-istio-injection-enabled
-    match:
-      any:
-      - resources:
-          kinds:
-          - Namespace
-          name: ".*service$"
-      - resources:
-          kinds:
-          - Namespace
-          name: "loadgenerator"
-      - resources:
-          kinds:
-          - Namespace
-          name: "frontend"
-    validate:
-      message: "All new Namespaces must have Istio sidecar injection enabled."
-      pattern:
-        metadata:
-          labels:
-            istio-injection: enabled
+    - name: check-istio-injection-enabled
+      match:
+        any:
+          - resources:
+              kinds:
+                - Namespace
+              name: ".*service.*"
+          - resources:
+              kinds:
+                - Namespace
+              name: "loadgenerator"
+          - resources:
+              kinds:
+                - Namespace
+              name: "frontend"
+      validate:
+        message: "All new Namespaces must have Istio sidecar injection enabled."
+        pattern:
+          metadata:
+            labels:
+              istio-injection: enabled

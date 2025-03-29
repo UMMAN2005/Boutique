@@ -1,4 +1,4 @@
-apiVersion: kyverno.io/v2beta1
+apiVersion: kyverno.io/v1
 kind: ClusterCleanupPolicy
 metadata:
   name: clean-bare-pods
@@ -13,16 +13,16 @@ metadata:
       Deployment or Job. Bare Pods are often create manually by users in an attempt to troubleshoot
       an issue. If left in the cluster, they create clutter, increase cost, and can be a security
       risk. Bare Pods can be cleaned up periodically through use of a policy. This policy finds
-      and removes all bare Pods across the cluster.      
+      and removes all bare Pods across the cluster.
 spec:
   match:
     any:
-    - resources:
-        kinds:
-          - Pod
+      - resources:
+          kinds:
+            - Pod
   conditions:
     all:
-    - key: "{{ target.metadata.ownerReferences[] || `[]` }}"
-      operator: Equals
-      value: []
+      - key: "{{ target.metadata.ownerReferences[] || `[]` }}"
+        operator: Equals
+        value: []
   schedule: "*/5 * * * *"
