@@ -12,8 +12,6 @@ resources:
   - productcatalog
   - recommendation
   - shipping
-components:
-  - ../components/kyverno
 labels:
   - includeSelectors: true
     pairs:

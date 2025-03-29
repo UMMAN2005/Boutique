@@ -7,3 +7,8 @@ resources:
   #   - scale
   #   - observability
   - security
+
+components:
+  - ../../components/kyverno/mutate
+  - ../../components/kyverno/validate
+  - ../../components/kyverno/cleanup
