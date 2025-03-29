@@ -1,0 +1,19 @@
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: boutique
+  description: Boutique Application.
+spec:
+  owner: group:github
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: frontend
+  description: Frontend microservice of Boutique Application.
+spec:
+  type: website
+  owner:  user:UMMAN2005
+  lifecycle: experimental
+  system: boutique
