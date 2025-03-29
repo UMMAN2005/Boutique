@@ -15,7 +15,7 @@ spec:
         - namespaceSelector:
             matchLabels:
               app.kubernetes.io/name: frontend
-        - podSelector:
+        - namespaceSelector:
             matchLabels:
               app.kubernetes.io/name: checkoutservice
       ports:

@@ -6,3 +6,4 @@ resources:
   - destinationrule.yaml
   - sidecar.yaml
   - virtualservice.yaml
+  - external-virtualservice.yaml

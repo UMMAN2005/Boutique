@@ -1,16 +1,16 @@
 apiVersion: networking.istio.io/v1
 kind: VirtualService
 metadata:
-  name: frontend-ingress
+  name: frontend-external
   namespace: frontend
 spec:
   hosts:
-    - "ayazumman.xyz"
+    - "app.ayazumman.xyz"
   gateways:
-    - frontend-gateway
+    - istio-system/app-gateway
   http:
     - route:
         - destination:
-            host: frontend
+            host: frontend.frontend.svc.cluster.local
             port:
               number: 80
