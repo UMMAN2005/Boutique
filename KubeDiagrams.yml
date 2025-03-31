@@ -1,0 +1,37 @@
+# Configuration of kube-diagrams for Istio CRDs
+edges:
+  UNDEFINED:
+    color: black # default color, can be changed to red or other
+
+clusters:
+  - label: istio.io/istio
+    title: Istio Service Mesh
+
+nodes:
+  VirtualService/networking.istio.io/v1:
+    scope: Namespaced
+    custom_icon: icons/Istio-VirtualService.png
+    edges: |
+      edges.add_all_resources_matching_labels("DestinationRule", "metadata.labels")
+
+  DestinationRule/networking.istio.io/v1:
+    scope: Namespaced
+    custom_icon: icons/Istio-DestinationRule.png
+    # no edges
+
+  Sidecar/networking.istio.io/v1:
+    scope: Namespaced
+    custom_icon: icons/Istio-Sidecar.png
+    edges: |
+      edges.add_all_resources_matching_labels("Deployment", "metadata.labels")
+
+  AuthorizationPolicy/security.istio.io/v1:
+    scope: Namespaced
+    custom_icon: icons/Istio-AuthorizationPolicy.png
+    edges: |
+      edges.add_all_resources_matching_labels("Deployment", "metadata.labels")
+
+  ClusterPolicy/kyverno.io/v1:
+    scope: Cluster
+    custom_icon: icons/Kyverno-ClusterPolicy.png
+    # no edges

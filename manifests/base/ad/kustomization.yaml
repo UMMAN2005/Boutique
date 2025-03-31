@@ -7,3 +7,8 @@ resources:
   #   - scale
   #   - observability
   - security
+
+labels:
+  - includeSelectors: true
+    pairs:
+      app: adservice

@@ -10,3 +10,8 @@ resources:
 
 components:
   - ../../components/redis
+
+labels:
+  - includeSelectors: true
+    pairs:
+      app: cartservice

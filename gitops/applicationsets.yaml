@@ -20,8 +20,9 @@ spec:
       name: adservice-{{.env}}
       annotations:
         argocd-image-updater.argoproj.io/image-list: |
-          adservice=finalprojectacridtech.azurecr.io/adservice:{{.env}}-*;timestamp
-        argocd-image-updater.argoproj.io/write-back-method: git
+          adservice=finalprojectacridtech2.azurecr.io/adservice:{{.env}}-*
+        argocd-image-updater.argoproj.io/adservice.update-strategy: latest
+        argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-secret
         argocd-image-updater.argoproj.io/write-back-target: kustomization
         argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
     spec:
@@ -62,8 +63,9 @@ spec:
       name: cartservice-{{.env}}
       annotations:
         argocd-image-updater.argoproj.io/image-list: |
-          cartservice=finalprojectacridtech.azurecr.io/cartservice:{{.env}}-*;timestamp
-        argocd-image-updater.argoproj.io/write-back-method: git
+          cartservice=finalprojectacridtech2.azurecr.io/cartservice:{{.env}}-*
+        argocd-image-updater.argoproj.io/cartservice.update-strategy: latest
+        argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-secret
         argocd-image-updater.argoproj.io/write-back-target: kustomization
         argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
     spec:
@@ -104,8 +106,9 @@ spec:
       name: checkoutservice-{{.env}}
       annotations:
         argocd-image-updater.argoproj.io/image-list: |
-          checkoutservice=finalprojectacridtech.azurecr.io/checkoutservice:{{.env}}-*;timestamp
-        argocd-image-updater.argoproj.io/write-back-method: git
+          checkoutservice=finalprojectacridtech2.azurecr.io/checkoutservice:{{.env}}-*
+        argocd-image-updater.argoproj.io/checkoutservice.update-strategy: latest
+        argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-secret
         argocd-image-updater.argoproj.io/write-back-target: kustomization
         argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
     spec:
@@ -146,8 +149,9 @@ spec:
       name: currencyservice-{{.env}}
       annotations:
         argocd-image-updater.argoproj.io/image-list: |
-          currencyservice=finalprojectacridtech.azurecr.io/currencyservice:{{.env}}-*;timestamp
-        argocd-image-updater.argoproj.io/write-back-method: git
+          currencyservice=finalprojectacridtech2.azurecr.io/currencyservice:{{.env}}-*
+        argocd-image-updater.argoproj.io/currencyservice.update-strategy: latest
+        argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-secret
         argocd-image-updater.argoproj.io/write-back-target: kustomization
         argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
     spec:
@@ -188,8 +192,9 @@ spec:
       name: emailservice-{{.env}}
       annotations:
         argocd-image-updater.argoproj.io/image-list: |
-          emailservice=finalprojectacridtech.azurecr.io/emailservice:{{.env}}-*;timestamp
-        argocd-image-updater.argoproj.io/write-back-method: git
+          emailservice=finalprojectacridtech2.azurecr.io/emailservice:{{.env}}-*
+        argocd-image-updater.argoproj.io/emailservice.update-strategy: latest
+        argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-secret
         argocd-image-updater.argoproj.io/write-back-target: kustomization
         argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
     spec:
@@ -230,8 +235,9 @@ spec:
       name: frontend-{{.env}}
       annotations:
         argocd-image-updater.argoproj.io/image-list: |
-          frontend=finalprojectacridtech.azurecr.io/frontend:{{.env}}-*;timestamp
-        argocd-image-updater.argoproj.io/write-back-method: git
+          frontend=finalprojectacridtech2.azurecr.io/frontend:{{.env}}-*
+        argocd-image-updater.argoproj.io/frontend.update-strategy: latest
+        argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-secret
         argocd-image-updater.argoproj.io/write-back-target: kustomization
         argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
     spec:
@@ -272,8 +278,9 @@ spec:
       name: loadgenerator-{{.env}}
       annotations:
         argocd-image-updater.argoproj.io/image-list: |
-          loadgenerator=finalprojectacridtech.azurecr.io/loadgenerator:{{.env}}-*;timestamp
-        argocd-image-updater.argoproj.io/write-back-method: git
+          loadgenerator=finalprojectacridtech2.azurecr.io/loadgenerator:{{.env}}-*
+        argocd-image-updater.argoproj.io/loadgenerator.update-strategy: latest
+        argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-secret
         argocd-image-updater.argoproj.io/write-back-target: kustomization
         argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
     spec:
@@ -314,8 +321,9 @@ spec:
       name: paymentservice-{{.env}}
       annotations:
         argocd-image-updater.argoproj.io/image-list: |
-          paymentservice=finalprojectacridtech.azurecr.io/paymentservice:{{.env}}-*;timestamp
-        argocd-image-updater.argoproj.io/write-back-method: git
+          paymentservice=finalprojectacridtech2.azurecr.io/paymentservice:{{.env}}-*
+        argocd-image-updater.argoproj.io/paymentservice.update-strategy: latest
+        argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-secret
         argocd-image-updater.argoproj.io/write-back-target: kustomization
         argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
     spec:
@@ -356,8 +364,9 @@ spec:
       name: productcatalogservice-{{.env}}
       annotations:
         argocd-image-updater.argoproj.io/image-list: |
-          productcatalogservice=finalprojectacridtech.azurecr.io/productcatalogservice:{{.env}}-*;timestamp
-        argocd-image-updater.argoproj.io/write-back-method: git
+          productcatalogservice=finalprojectacridtech2.azurecr.io/productcatalogservice:{{.env}}-*
+        argocd-image-updater.argoproj.io/productcatalogservice.update-strategy: latest
+        argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-secret
         argocd-image-updater.argoproj.io/write-back-target: kustomization
         argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
     spec:
@@ -398,8 +407,9 @@ spec:
       name: recommendationservice-{{.env}}
       annotations:
         argocd-image-updater.argoproj.io/image-list: |
-          recommendationservice=finalprojectacridtech.azurecr.io/recommendationservice:{{.env}}-*;timestamp
-        argocd-image-updater.argoproj.io/write-back-method: git
+          recommendationservice=finalprojectacridtech2.azurecr.io/recommendationservice:{{.env}}-*
+        argocd-image-updater.argoproj.io/recommendationservice.update-strategy: latest
+        argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-secret
         argocd-image-updater.argoproj.io/write-back-target: kustomization
         argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
     spec:
@@ -440,8 +450,9 @@ spec:
       name: shippingservice-{{.env}}
       annotations:
         argocd-image-updater.argoproj.io/image-list: |
-          shippingservice=finalprojectacridtech.azurecr.io/shippingservice:{{.env}}-*;timestamp
-        argocd-image-updater.argoproj.io/write-back-method: git
+          shippingservice=finalprojectacridtech2.azurecr.io/shippingservice:{{.env}}-*
+        argocd-image-updater.argoproj.io/shippingservice.update-strategy: latest
+        argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-secret
         argocd-image-updater.argoproj.io/write-back-target: kustomization
         argocd-image-updater.argoproj.io/git-branch: "{{.branch}}"
     spec:

@@ -11,3 +11,8 @@ resources:
 components:
   - ../../components/kyverno/mutate
   - ../../components/kyverno/validate
+
+labels:
+  - includeSelectors: true
+    pairs:
+      app: frontend
